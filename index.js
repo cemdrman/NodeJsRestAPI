@@ -4,11 +4,12 @@ const bodyParser = require("body-parser");
 const app = express();
 const userController = require('./controllers/UserController');
 
-app.use("/api/user",userController);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({credentials: true, origin: true}));
+app.use("/api/user",userController);
 
+/*
 // Add headers
 app.use(function (req, res, next) {
 
@@ -27,7 +28,7 @@ app.use(function (req, res, next) {
 
     // Pass to next layer of middleware
     next();
-});
+});*/
 //--server
 const port = 3000;
 app.listen(port, () =>{
