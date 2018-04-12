@@ -15,8 +15,8 @@ router.post("/save", (req,res) =>{
         email:    req.body.email,
         password: req.body.password
     });
-    console.log("User saved");
-    console.log(user);
+    users.push(user);
+    console.log("User saved: " + user);
     res.json(user);
 
 });
