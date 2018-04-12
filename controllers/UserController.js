@@ -2,22 +2,23 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 
-const  users = [{name : "cem",email:"cemdrman@gmail.com",password:"123456"}];
+const  users = [
+    {name : "cem",email:"cemdrman@gmail.com",password:"123456"},
+    {name : "emir",email:"emir@gmail.com",password:"147"},
+    {name : "nehir",email:"nehir@gmail.com",password:"2018"},
+];
 
 router.post("/save", (req,res) =>{
-   
-    User.create(
-        {
-            name : req.body.name,
-            email : req.body.email,
-            password : req.body.password
-        },(err,user) =>{
-            if (err) {
-                res.send("There was a problem");
-            }
-            res.status(200).json(user);
-        }
-    );
+    
+    const user = new User({
+        name:     req.body.name,
+        email:    req.body.email,
+        password: req.body.password
+    });
+    console.log("User saved");
+    console.log(user);
+    res.json(user);
+
 });
 
 // GETS A SINGLE USER FROM THE DATABASE
@@ -31,6 +32,7 @@ router.get('/:id', function (req, res) {
 
 router.get(["","/list"], (req, res) => {
     res.json(users);
+    console.log(users);
     /*User.find(function (err, user) {
         if (err) return console.error(err);
         console.log(user);
